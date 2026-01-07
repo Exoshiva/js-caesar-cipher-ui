@@ -21,7 +21,7 @@ Aus Eigeninitiative habe ich das Frontend komplett überarbeitet (Refactoring), 
 
 | Original (Schul-Standard) | Mein Refactoring (Glassmorphism) |
 |:---:|:---:|
-| <img src="./img/old_design.jpg" width="400"> | <img src="./img/new_design.jpg" width="400"> |
+| <img src="./img/old_design.png" width="400"> | <img src="./img/new_design.png" width="400"> |
 | *Schlechter Kontrast, unklare Führung* | *Klarer Fokus, Modern CSS, Intuitive Bedienung* |
 
 ---
