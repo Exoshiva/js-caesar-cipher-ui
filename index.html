@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caesar Verschlüsselung</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+    </style>
+</head>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3Cpath d='M12 13v4'/%3E%3C/svg%3E">
+<body>
+
+    <div class="container">
+        <h1>Caesar Verschlüsselung</h1>
+        
+        <label for="inputText">Text:</label>
+        <input type="text" id="inputText" placeholder="Text eingeben (z.B. HALLO oder KDOOR)...">
+
+        <label for="shiftValue">Schlüssel (Shift):</label>
+        <input type="number" id="shiftValue" value="3" min="0" max="25">
+
+        <div class="button-group">
+            <button id="encryptBtn">Verschlüsseln</button>
+            <button id="decryptBtn">Entschlüsseln</button>
+        </div>
+
+        <label>Ergebnis:</label>
+        <div id="resultOutput">Noch keine Berechnung.</div>
+    </div>
+
+    <script>
+        // 1. ZUGRIFF AUF ELEMENTE
+        const inputField = document.getElementById('inputText');
+        const shiftField = document.getElementById('shiftValue');
+        const result = document.getElementById('resultOutput');
+        const encryptBtn = document.getElementById('encryptBtn');
+        const decryptBtn = document.getElementById('decryptBtn');
+
+        // 2. EVENT LISTENER
+        // Die Hilfsfunktion rufen wir hier auf und übergeben was wir tun wollen
+        encryptBtn.addEventListener('click', () => {
+            startCipher('encrypt');
+        });
+
+        decryptBtn.addEventListener('click', () => {
+            startCipher('decrypt');
+        });
+
+        // 3. STEUERUNGS-FUNKTION (Controller Logic)
+        function startCipher(mode) {
+            const text = inputField.value;
+            let shift = parseInt(shiftField.value);
+
+            // Validierung
+            if (!text || isNaN(shift)) {
+                result.textContent = "Fehler: Bitte Text und Zahl eingeben.";
+                result.style.color = "red";
+                return;
+            }
+            result.style.color = "#333";
+
+            // Beim Entschlüsseln wird das Vorzeichen des Shifts umgedreht!
+            // Aus Shift 3 wird -3.
+            if (mode === 'decrypt') {
+                shift = shift * -1;
+            }
+
+            const output = caesarCipher(text, shift);
+            result.textContent = output;
+        }
+
+        // 4. ALGORITHMUS 
+        function caesarCipher(text, shift) {
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let resultText = ''; 
+            text = text.toUpperCase();
+
+            for (let i = 0; i < text.length; i++) {
+                let char = text[i];
+                
+                if (alphabet.includes(char)) {
+                    let index = alphabet.indexOf(char);
+                    
+                    // index + shift (shift kann hier negativ sein!)
+                    let newIndex = (index + shift) % 26;
+                    
+                    // Javascript Modulo-Bug-Fix für negative Zahlen:
+                    // Wenn newIndex negativ ist (z.B. -1), addiere 26 drauf -> 25 (Z)
+                    if (newIndex < 0) {
+                        newIndex = newIndex + 26;
+                    }
+
+                    resultText += alphabet[newIndex];
+                } else {
+                    resultText += char;
+                }
+            }
+            return resultText;
+        }
+    </script>
+</body>
+</html>

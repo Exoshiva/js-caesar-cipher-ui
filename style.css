@@ -1,0 +1,136 @@
+/* RESET */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 1. BACKGROUND & CENTERING */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    /* Flexbox für die perfekte Zentrierung in der Mitte des Bildschirms */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+
+    /* Hintergrundbild mit dunklem Overlay (60% dunkel) */
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('img/cyber-security-3.jpg'); 
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* 2. DER CONTAINER (Glass-Effekt) */
+.container {
+    background-color: rgba(253, 253, 253, 0.5); /* Leicht transparent */
+    backdrop-filter: blur(4px); /* Milchglas-Effekt */
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 40px;
+    font-size: 1.5rem;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.5);
+}
+
+/* INPUT FELDER */
+.input-group { margin-bottom: 1rem; text-align: left; }
+
+label {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"], 
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* 3. BUTTONS (Hier holen wir das ROT/GRÜN Design zurück!) */
+
+/* Container damit die Buttons nebeneinander stehen */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+/* Basis-Style für alle Buttons (Form, Schrift) */
+button {
+    flex: 1; /* Sorgt dafür, dass beide gleich breit sind */
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+button:active { transform: scale(0.98); }
+
+/* SPEZIFISCHE FARBEN */
+
+/* Der Grüne Button */
+#encryptBtn { 
+    background-color: #29b664; 
+}
+#encryptBtn:hover { 
+    background-color: #1f9e3a; 
+}
+
+/* Der Rote Button */
+#decryptBtn { 
+    background-color: #dc3545; 
+}
+#decryptBtn:hover { 
+    background-color: #c82333; 
+}
+
+/* ERGEBNIS BEREICH */
+.result-box { margin-top: 20px; text-align: left; }
+
+#resultOutput {
+    background-color: rgba(233, 236, 239, 0.9);
+    padding: 15px;
+    border-radius: 6px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    color: #222;
+    word-break: break-word;
+    min-height: 24px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
